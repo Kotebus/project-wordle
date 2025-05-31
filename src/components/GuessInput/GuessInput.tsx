@@ -17,9 +17,11 @@ function GuessInput({setWord}: { setWord: (value: string) => void }) {
     <label htmlFor="guess-input">Enter guess:</label>
     <input id="guess-input"
            type="text"
+           required
+           minLength={5}
+           maxLength={5}
            value={guess}
            onChange={(e) => setGuess(e.target.value)}
-           maxLength={5}
            placeholder={'* * * * *'}
            pattern="^[a-zA-Z]{5}$"/>
   </form>);
