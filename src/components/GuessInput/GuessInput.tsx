@@ -23,7 +23,8 @@ function GuessInput({setWord}: { setWord: (value: string) => void }) {
            value={guess}
            onChange={(e) => setGuess(e.target.value)}
            placeholder={'* * * * *'}
-           pattern="^[a-zA-Z]{5}$"/>
+           pattern="^[a-zA-Z]{5}$"
+           title="Must be 5 letters"/>
   </form>);
 }
 
