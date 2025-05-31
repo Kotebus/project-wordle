@@ -1,4 +1,5 @@
 import {FormEvent, useState} from "react";
+import {NUM_OF_LETTERS_ALLOWED} from "../../constants";
 
 function GuessInput({setWord}: { setWord: (value: string) => void }) {
   const [guess, setGuess] = useState('');
@@ -6,7 +7,7 @@ function GuessInput({setWord}: { setWord: (value: string) => void }) {
   const onGuessSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const wordForSubmit = guess.trim();
-    if (wordForSubmit.length !== 5) {
+    if (wordForSubmit.length !== NUM_OF_LETTERS_ALLOWED) {
       return;
     }
     setWord(guess.toUpperCase());
@@ -18,13 +19,13 @@ function GuessInput({setWord}: { setWord: (value: string) => void }) {
     <input id="guess-input"
            type="text"
            required
-           minLength={5}
-           maxLength={5}
+           minLength={NUM_OF_LETTERS_ALLOWED}
+           maxLength={NUM_OF_LETTERS_ALLOWED}
            value={guess}
            onChange={(e) => setGuess(e.target.value)}
            placeholder={'* * * * *'}
-           pattern="^[a-zA-Z]{5}$"
-           title="Must be 5 letters"/>
+           pattern={`^[a-zA-Z]{${NUM_OF_LETTERS_ALLOWED}}$`}
+           title={`Must be ${NUM_OF_LETTERS_ALLOWED} letters`}/>
   </form>);
 }
 

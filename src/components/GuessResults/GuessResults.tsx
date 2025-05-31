@@ -1,12 +1,12 @@
 import {range} from "../../utils";
+import {NUM_OF_GUESSES_ALLOWED, NUM_OF_LETTERS_ALLOWED} from "../../constants";
 
 function GuessResults({guessesList}:{guessesList:string[]} ) {
-  //Нужно сделать массив из 5 элементов. Каждый элемент - это строка.
   const matrix = [...guessesList];
-  for (let i=0; i < 5 - guessesList.length; i++) {
+  for (let i=0; i < NUM_OF_GUESSES_ALLOWED - guessesList.length; i++) {
     matrix.push('');
   }
-  const emptyWordArray = range(0, 5).map(() => '');
+  const emptyWordArray = range(0, NUM_OF_LETTERS_ALLOWED).map(() => '');
 
   const getArrayFromWord = (word:string) => {
     const array = word.length === 0 ?
