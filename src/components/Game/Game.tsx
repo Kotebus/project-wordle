@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
 

@@ -144,7 +144,7 @@ Here's the DOM structure you'll want to create dynamically, based on the user's 
 There are two things that should help you tackle this exercise:
 
 1. You can use the `range` utility to create arrays of a specified length to map over. It's provided in `/src/utils.js`. Check out the “Range Utility” lesson in the course for more info on how to use it.
-2. Inside `/src/constants.js`, you'll find a constant, `NUM_OF_GUESSES_ALLOWED`. You should import and use this constant when generating the set of guesses. This would make it easy for us to change the difficulty of the game later on, by increasing/decreasing the # of guesses.
+2. Inside `/src/constants.tsx`, you'll find a constant, `NUM_OF_GUESSES_ALLOWED`. You should import and use this constant when generating the set of guesses. This would make it easy for us to change the difficulty of the game later on, by increasing/decreasing the # of guesses.
 
 **Acceptance Criteria:**
 
@@ -162,7 +162,7 @@ In this exercise, we'll add some CSS classes to color the background of each cel
 
 ![Screen recording. The guesses are applied to the game board, and the background colors update accordingly](docs/words-with-backgrounds.gif)
 
-Inside `/src/game-helpers.js`, you'll find a helper function, `checkGuess`. As parameters, it takes a single guess, as well as the correct answer. It returns an array that contains the status for each letter.
+Inside `/src/game-helpers.tsx`, you'll find a helper function, `checkGuess`. As parameters, it takes a single guess, as well as the correct answer. It returns an array that contains the status for each letter.
 
 For example:
 
@@ -205,7 +205,7 @@ Your task is to use this function to validate the user's guesses, and apply the 
 
 **Acceptance Criteria:**
 
-- Import the `checkGuess` function from `/src/game-helpers.js`, and use it to validate each of the user's guesses
+- Import the `checkGuess` function from `/src/game-helpers.tsx`, and use it to validate each of the user's guesses
 - When rendering the letters in the `Guess` component, apply the letter's `status` to the `cell` element.
 - "Empty" guess slots should have the same markup as before: `<span class="cell"></span>`.
 
