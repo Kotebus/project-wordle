@@ -143,7 +143,7 @@ Here's the DOM structure you'll want to create dynamically, based on the user's 
 
 There are two things that should help you tackle this exercise:
 
-1. You can use the `range` utility to create arrays of a specified length to map over. It's provided in `/src/utils.js`. Check out the “Range Utility” lesson in the course for more info on how to use it.
+1. You can use the `range` utility to create arrays of a specified length to map over. It's provided in `/src/utils.ts`. Check out the “Range Utility” lesson in the course for more info on how to use it.
 2. Inside `/src/constants.tsx`, you'll find a constant, `NUM_OF_GUESSES_ALLOWED`. You should import and use this constant when generating the set of guesses. This would make it easy for us to change the difficulty of the game later on, by increasing/decreasing the # of guesses.
 
 **Acceptance Criteria:**
