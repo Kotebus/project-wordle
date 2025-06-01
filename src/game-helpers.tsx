@@ -2,8 +2,8 @@
  * Thanks to Github user dylano for supplying a more-accurate
  * solving algorithm!
  */
+import type {GuessResultStatus} from "./components/types.ts";
 
-export type GuessResultStatus = 'correct' | 'incorrect' | 'misplaced';
 export interface GuessResult {
   letter: string;
   status: GuessResultStatus;

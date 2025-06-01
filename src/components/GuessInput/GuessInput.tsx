@@ -1,8 +1,11 @@
-import {type FormEvent, useState} from "react";
+import {type FormEvent, useEffect, useRef, useState} from "react";
 import {NUM_OF_LETTERS_ALLOWED} from "../../constants";
 
 function GuessInput({setWord}: { setWord: (value: string) => void }) {
     const [guess, setGuess] = useState('');
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => inputRef.current?.focus(), []);
 
     const handleGuessSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -18,6 +21,7 @@ function GuessInput({setWord}: { setWord: (value: string) => void }) {
         <form className="guess-input-wrapper" onSubmit={handleGuessSubmit}>
             <label htmlFor="guess-input">Enter guess:</label>
             <input id="guess-input"
+                   ref={inputRef}
                    type="text"
                    required
                    minLength={NUM_OF_LETTERS_ALLOWED}

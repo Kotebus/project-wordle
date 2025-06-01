@@ -1,39 +1,50 @@
 import {sample} from '../../utils';
 import {WORDS} from '../../data';
 import GuessInput from "../GuessInput";
-import {type ReactNode, useState} from "react";
+import {useEffect, useState} from "react";
 import GuessResults from "../GuessResults";
-import {checkGuess, type GuessResult} from "../../game-helpers.tsx";
-import {NUM_OF_GUESSES_ALLOWED} from "../../constants.tsx";
+import {checkGuess, type GuessResult} from "../../game-helpers";
+import {NUM_OF_GUESSES_ALLOWED} from "../../constants";
+import Banner from '../Banner/Banner';
+import {type GameStatus} from "../types";
 
-// Pick a random word on every page load.
-const answer = sample(WORDS);
-// To make debugging easier, we'll log the solution in the console.
-console.info({answer});
+function Game({
+                  restartCount,
+                  gameStatus,
+                  setGameStatus}:
+              {
+                  restartCount: number,
+                  gameStatus: GameStatus,
+                  setGameStatus: (value: GameStatus) => void
+              }) {
 
-type GameStatus = 'playing' | 'won' | 'lost';
+    const [answer, setAnswer] = useState('');
 
-function Banner({bannerType, children}: { bannerType: 'happy' | 'sad', children: ReactNode }) {
-    return (
-        <div className={`${bannerType} banner`}>
-            {children}
-        </div>
-    );
-}
+    useEffect(() => setNewAnswer(), []);
 
-function Game() {
+    const resetGame = () => {
+        setNewAnswer();
+        setWords([]);
+        setGameStatus('playing');
+    }
+    useEffect(resetGame, [restartCount]);
+
+    const setNewAnswer = () => {
+        const gameSessionAnswer = sample(WORDS);
+        setAnswer(gameSessionAnswer);
+        console.info({gameSessionAnswer});
+    }
+
     const [words, setWords] = useState<GuessResult[][]>([]);
-    const [gameStatus, setGameStatus] = useState<GameStatus>('playing');
 
     const processNewWord = (newWord: string) => {
         const processedWord = checkGuess(newWord, answer);
         if (processedWord !== null) {
             const nextWords = [...words, processedWord]
             setWords(nextWords);
-            if (processedWord.every((item) => item.status === 'correct')) {
+            if (newWord === answer) {
                 setGameStatus('won');
-            }
-            if (nextWords.length === NUM_OF_GUESSES_ALLOWED) {
+            } else if (nextWords.length === NUM_OF_GUESSES_ALLOWED) {
                 setGameStatus('lost');
             }
         }
@@ -46,7 +57,9 @@ function Game() {
             case 'won':
                 return (
                     <Banner bannerType={'happy'}>
-                        <strong>Congratulations!</strong> Got it in <strong>{words.length} guesses</strong>.
+                        <strong>Congratulations!</strong> Got it in
+                        {' '}
+                        <strong>{words.length === 1 ? '1 guess' : `${words.length} guesses`}</strong>.
                     </Banner>
                 );
             case 'lost':
