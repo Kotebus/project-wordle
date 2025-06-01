@@ -20,8 +20,6 @@ function Game({
 
     const [answer, setAnswer] = useState('');
 
-    useEffect(() => setNewAnswer(), []);
-
     const resetGame = () => {
         setNewAnswer();
         setWords([]);

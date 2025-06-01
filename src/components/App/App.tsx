@@ -9,7 +9,6 @@ function App() {
 
     useEffect(() => {
         function handleKeyDown(e: KeyboardEvent) {
-            console.log(e);
             if ((e.key === 'Enter' && gameStatus !== 'playing') || e.key === 'Escape') {
                 setRestartCount(restartCount + 1);
             }
@@ -25,6 +24,11 @@ function App() {
         >
             <Header/>
             <div className="game-wrapper">
+                <p>
+                    { gameStatus === 'playing' ?
+                        <>For restart press <kbd>Esc</kbd>.</> :
+                        <>For restart press <kbd>Enter</kbd>, <kbd>Esc</kbd> or click anywhere.</>}
+                </p>
                 <Game
                     gameStatus={gameStatus}
                     setGameStatus={setGameStatus}
