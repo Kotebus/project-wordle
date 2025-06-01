@@ -4,10 +4,10 @@ import type {GuessResult} from "../../game-helpers.tsx";
 
 function GuessResults({guessesList}: { guessesList: GuessResult[][] }) {
 
-    const getLetter = (
+    const getCell = (
         {index, letter}: { index: number, letter?: GuessResult }
     ) =>
-        (<span key={index} className={`cell ${letter?.status}`}>
+        (<span key={index} className={`cell ${letter?.status ?? ''}`}>
             {letter?.letter}
         </span>);
 
@@ -18,9 +18,9 @@ function GuessResults({guessesList}: { guessesList: GuessResult[][] }) {
             {
                 dataList ?
                     dataList.map((item, i) =>
-                        getLetter({index: i, letter: item})) :
+                        getCell({index: i, letter: item})) :
                     range(NUM_OF_LETTERS_ALLOWED).map((_, i) =>
-                        getLetter({index: i}))
+                        getCell({index: i}))
             }
         </p>);
 
